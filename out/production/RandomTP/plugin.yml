@@ -1,0 +1,13 @@
+name: RandomTP
+author: thomi100
+version: 1.0.0
+website: http://thomi100.net
+description: This plugin allows you to teleport the players to a random location.
+
+main: net.thomi100.Main
+
+commands:
+  randomtp:
+    description: Main command for the RandomTP plugin.
+    aliases: [tp, teleport, random]
+    usage: /randomtp [args]

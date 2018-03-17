@@ -1,9 +1,10 @@
 package net.thomi100;
 
-import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.Material;
 import org.bukkit.plugin.Plugin;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /*
@@ -20,7 +21,58 @@ public class Configuration {
         }
 
         if(pl.getConfig().getString("enable_default_command") == null) {
-            pl.getConfig().set("enable_default_command", "true");
+            pl.getConfig().set("enable_default_command", true);
+            save = true;
+        }
+
+        if(pl.getConfig().getString("min_x") == null) {
+            pl.getConfig().set("min_x", -500);
+            save = true;
+        }
+
+        if(pl.getConfig().getString("max_x") == null) {
+            pl.getConfig().set("max_x", 500);
+            save = true;
+        }
+
+        if(pl.getConfig().getString("min_z") == null) {
+            pl.getConfig().set("min_z", -500);
+            save = true;
+        }
+
+        if(pl.getConfig().getString("max_z") == null) {
+            pl.getConfig().set("max_z", 500);
+            save = true;
+        }
+
+        if(pl.getConfig().getString("play_sounds") == null) {
+            pl.getConfig().set("play_sounds", true);
+            save = true;
+        }
+
+        if(pl.getConfig().getString("show_particles") == null) {
+            pl.getConfig().set("show_particles", true);
+            save = true;
+        }
+
+        if(pl.getConfig().getString("disabled_blocks") == null) {
+            ArrayList<String> disabled_blocks = new ArrayList<>();
+            disabled_blocks.add(Material.LAVA.toString());
+            disabled_blocks.add(Material.STATIONARY_LAVA.toString());
+            disabled_blocks.add(Material.WATER.toString());
+            disabled_blocks.add(Material.STATIONARY_WATER.toString());
+            disabled_blocks.add(Material.WATER_LILY.toString());
+            pl.getConfig().set("disabled_blocks", disabled_blocks);
+            save = true;
+        }
+
+        if(pl.getConfig().getString("reloaded") == null) {
+            pl.getConfig().set("reloaded", "{prefix} &aReloaded RandomTP.");
+            save = true;
+        }
+
+        if(pl.getConfig().getString("noPermissions") == null) {
+            pl.getConfig().set("noPermissions", "{prefix} &cYou don't have eneugh permissions for that.");
             save = true;
         }
 
