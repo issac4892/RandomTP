@@ -9,5 +9,5 @@ main: net.thomi100.Main
 commands:
   randomtp:
     description: Main command for the RandomTP plugin.
-    aliases: [tp, teleport, random]
+    aliases: [rtp, randomteleport]
     usage: /randomtp [args]

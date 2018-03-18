@@ -36,7 +36,7 @@ public class Main extends JavaPlugin {
             if(args.length == 1) {
 
                 if(args[0].equalsIgnoreCase("reload")) {
-                    if(!(sender instanceof Player) || sender.hasPermission("RandomTP.reload")) {
+                    if(!(sender instanceof Player) || sender.hasPermission("RandomTP.reload") || sender.hasPermission("RandomTP.*")) {
                         Configuration.setDefaults(this);
                         Configuration.load(this);
                         sender.sendMessage((String) Configuration.get("reloaded"));
@@ -49,7 +49,7 @@ public class Main extends JavaPlugin {
                 if(args[0].equalsIgnoreCase("teleport")) {
                     if(sender instanceof Player) {
                         Player p = ((Player) sender);
-                        if(sender.hasPermission("RandomTP.teleport")) {
+                        if(sender.hasPermission("RandomTP.teleport") || sender.hasPermission("RandomTP.*")) {
                             Teleport.teleport(p, p.getWorld());
                             return true;
                         }
@@ -69,7 +69,7 @@ public class Main extends JavaPlugin {
                         Player p = ((Player) sender);
                         World wld = Bukkit.getWorld(args[1]);
                         if(wld != null) {
-                            if(sender.hasPermission("RandomTP.teleport.worlds")) {
+                            if(sender.hasPermission("RandomTP.teleport.worlds") || sender.hasPermission("RandomTP.*")) {
                                 Teleport.teleport(p, wld);
                                 return true;
                             }
@@ -93,7 +93,7 @@ public class Main extends JavaPlugin {
                         World wld = Bukkit.getWorld(args[1]);
                         Player target = Bukkit.getPlayerExact(args[2]);
                         if(wld != null) {
-                            if(sender.hasPermission("RandomTP.teleport.other")) {
+                            if(sender.hasPermission("RandomTP.teleport.other") || sender.hasPermission("RandomTP.*")) {
                                 if(target != null) {
                                     Teleport.teleport(p, wld);
                                     return true;
