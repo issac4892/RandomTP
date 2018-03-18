@@ -4,7 +4,6 @@ import org.bukkit.*;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 
-import java.rmi.NoSuchObjectException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -52,7 +51,7 @@ public class Teleport {
         try {
 
             ArrayList<Material> disabled_blocks = new ArrayList<>();
-            for(String mat : ((List<String>) Configuration.get("disabled_blocks"))) { // TODO
+            for(String mat : ((List<String>) Configuration.get("disabled_blocks"))) {
                 Material material = Material.getMaterial(mat);
                 if(material != null) {
                     disabled_blocks.add(material);
@@ -67,6 +66,7 @@ public class Teleport {
             p.teleport(loc);
             p.sendMessage(((String) Configuration.get("teleport_msg")).replace("{world}", world.getName()));
             if((boolean) Configuration.get("console_msg")) System.out.println("[RandomTP] " + p.getName() + " was teleported into " + world.getName() + " (" + loc.getBlock().getRelative(BlockFace.DOWN).getType().toString() + ", " + loc.getBlockX() + "/" + loc.getBlockY() + "/" + loc.getBlockZ() + ").");
+
         } catch (NullPointerException e) {
 
             System.err.println("[RandomTP] Cannot read list disabled_blocks. There may be occured an error while an administrator created the list.");

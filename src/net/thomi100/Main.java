@@ -14,18 +14,12 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        System.out.println("[RandomTP] Enabling the plugin...");
 
         Configuration.setDefaults(this);
         Configuration.load(this);
 
         Bukkit.getPluginManager().registerEvents(new SignHandler(), this);
 
-    }
-
-    @Override
-    public void onDisable() {
-        System.out.println("[RandomTP] Disabling the plugin...");
     }
 
     @Override

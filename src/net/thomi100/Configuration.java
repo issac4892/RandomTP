@@ -50,6 +50,11 @@ public class Configuration {
             save = true;
         }
 
+        if(pl.getConfig().getString("console_msg") == null) {
+            pl.getConfig().set("console_msg", true);
+            save = true;
+        }
+
         if(pl.getConfig().getString("disabled_blocks") == null) {
             ArrayList<String> disabled_blocks = new ArrayList<>();
             disabled_blocks.add(Material.LAVA.toString());
@@ -76,6 +81,21 @@ public class Configuration {
             save = true;
         }
 
+        if(pl.getConfig().getString("teleport_msg") == null) {
+            pl.getConfig().set("teleport_msg", "&8[&9RandomTP&8] &aYou were teleported into the world {world}.");
+            save = true;
+        }
+
+        if(pl.getConfig().getString("sneak_to_destroy") == null) {
+            pl.getConfig().set("sneak_to_destroy", "&8[&9RandomTP&8] &cSneak to remove the sign.");
+            save = true;
+        }
+
+        if(pl.getConfig().getString("specify_world") == null) {
+            pl.getConfig().set("specify_world", "&8[&9RandomTP&8] &cPlease specify a world in line 4.");
+            save = true;
+        }
+
         if(pl.getConfig().getString("noPermissions") == null) {
             pl.getConfig().set("noPermissions", "&8[&9RandomTP&8] &cYou don't have eneugh permissions for that.");
             save = true;
@@ -99,26 +119,6 @@ public class Configuration {
 
         if(pl.getConfig().getString("sign_3") == null) {
             pl.getConfig().set("sign_3", "&aRandom TP:");
-            save = true;
-        }
-
-        if(pl.getConfig().getString("specify_world") == null) {
-            pl.getConfig().set("specify_world", "&8[&9RandomTP&8] &cPlease specify a world in line 4.");
-            save = true;
-        }
-
-        if(pl.getConfig().getString("teleport_msg") == null) {
-            pl.getConfig().set("teleport_msg", "&8[&9RandomTP&8] &aYou were teleported into the world {world}.");
-            save = true;
-        }
-
-        if(pl.getConfig().getString("sneak_to_destroy") == null) {
-            pl.getConfig().set("sneak_to_destroy", "&8[&9RandomTP&8] &cSneak to remove the sign.");
-            save = true;
-        }
-
-        if(pl.getConfig().getString("console_msg") == null) {
-            pl.getConfig().set("console_msg", true);
             save = true;
         }
 
