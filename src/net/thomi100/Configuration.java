@@ -15,11 +15,6 @@ public class Configuration {
     public static void setDefaults(Plugin pl) {
         boolean save = false;
 
-        if(pl.getConfig().getString("prefix") == null) {
-            pl.getConfig().set("prefix", "&8[&9RandomTP&8] &r");
-            save = true;
-        }
-
         if(pl.getConfig().getString("enable_default_command") == null) {
             pl.getConfig().set("enable_default_command", true);
             save = true;
@@ -67,18 +62,63 @@ public class Configuration {
         }
 
         if(pl.getConfig().getString("reloaded") == null) {
-            pl.getConfig().set("reloaded", "{prefix} &aReloaded RandomTP.");
+            pl.getConfig().set("reloaded", "&8[&9RandomTP&8] &aReloaded RandomTP.");
+            save = true;
+        }
+
+        if(pl.getConfig().getString("world_not_exists") == null) {
+            pl.getConfig().set("world_not_exists", "&8[&9RandomTP&8] &cThe specified world does not exist.");
+            save = true;
+        }
+
+        if(pl.getConfig().getString("player_not_exists") == null) {
+            pl.getConfig().set("player_not_exists", "&8[&9RandomTP&8] &cThe specified player is not online.");
             save = true;
         }
 
         if(pl.getConfig().getString("noPermissions") == null) {
-            pl.getConfig().set("noPermissions", "{prefix} &cYou don't have eneugh permissions for that.");
+            pl.getConfig().set("noPermissions", "&8[&9RandomTP&8] &cYou don't have eneugh permissions for that.");
             save = true;
         }
 
         if(pl.getConfig().getString("help_message") == null) {
-            pl.getConfig().set("help_message", "{prefix} &aHelp for RandomTP Version {version}: " +
-                    "{prefix} &e/randomtp &7 - &amain command");
+            pl.getConfig().set("help_message", "&8[&9RandomTP&8] &aHelp for RandomTP Version {version}: " +
+                    "&8[&9RandomTP&8] &e/randomtp &7 - &amain command");
+            save = true;
+        }
+
+        if(pl.getConfig().getString("sign_1") == null) {
+            pl.getConfig().set("sign_1", "&8[&9RandomTP&8]");
+            save = true;
+        }
+
+        if(pl.getConfig().getString("sign_2") == null) {
+            pl.getConfig().set("sign_2", " ");
+            save = true;
+        }
+
+        if(pl.getConfig().getString("sign_3") == null) {
+            pl.getConfig().set("sign_3", "&aRandom TP:");
+            save = true;
+        }
+
+        if(pl.getConfig().getString("specify_world") == null) {
+            pl.getConfig().set("specify_world", "&8[&9RandomTP&8] &cPlease specify a world in line 4.");
+            save = true;
+        }
+
+        if(pl.getConfig().getString("teleport_msg") == null) {
+            pl.getConfig().set("teleport_msg", "&8[&9RandomTP&8] &aYou were teleported into the world {world}.");
+            save = true;
+        }
+
+        if(pl.getConfig().getString("sneak_to_destroy") == null) {
+            pl.getConfig().set("sneak_to_destroy", "&8[&9RandomTP&8] &cSneak to remove the sign.");
+            save = true;
+        }
+
+        if(pl.getConfig().getString("console_msg") == null) {
+            pl.getConfig().set("console_msg", true);
             save = true;
         }
 
@@ -98,11 +138,8 @@ public class Configuration {
             if(obj instanceof String) {
                 String string = ((String) obj).replace("&", "§");
 
-                if(((String) obj).contains("{prefix}") && config.containsKey("prefix")) {
-                    string = string.replace("{prefix}", (String) config.get("prefix"));
-                }
-
                 string = string.replace("{version}", pl.getDescription().getVersion());
+                string = string.replace("{author}", pl.getDescription().getAuthors().get(0));
 
                 config.put(key, string);
             } else {

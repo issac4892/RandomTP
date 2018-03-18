@@ -62,13 +62,11 @@ public class Teleport {
             Location loc = null;
             while(loc == null || disabled_blocks.contains(loc.getBlock().getType()) || disabled_blocks.contains(loc.getBlock().getRelative(BlockFace.DOWN).getType())) {
                 loc = getLocation(world, getX(), getZ());
-                p.sendMessage("loc: " + loc);
-                p.sendMessage("landing on: " + loc.getBlock().getType());
-                p.sendMessage("lower landing on: " + loc.getBlock().getRelative(BlockFace.DOWN).getType());
             }
 
             p.teleport(loc);
-
+            p.sendMessage(((String) Configuration.get("teleport_msg")).replace("{world}", world.getName()));
+            if((boolean) Configuration.get("console_msg")) System.out.println("[RandomTP] " + p.getName() + " was teleported into " + world.getName() + " (" + loc.getBlock().getRelative(BlockFace.DOWN).getType().toString() + ", " + loc.getBlockX() + "/" + loc.getBlockY() + "/" + loc.getBlockZ() + ").");
         } catch (NullPointerException e) {
 
             System.err.println("[RandomTP] Cannot read list disabled_blocks. There may be occured an error while an administrator created the list.");

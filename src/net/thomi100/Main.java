@@ -1,5 +1,7 @@
 package net.thomi100;
 
+import org.bukkit.Bukkit;
+import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -16,6 +18,9 @@ public class Main extends JavaPlugin {
 
         Configuration.setDefaults(this);
         Configuration.load(this);
+
+        Bukkit.getPluginManager().registerEvents(new SignHandler(), this);
+
     }
 
     @Override
@@ -29,7 +34,7 @@ public class Main extends JavaPlugin {
 
             if(args.length == 0) {
                 if(!(sender instanceof Player) || (boolean) Configuration.get("enable_default_command")) {
-                    sender.sendMessage(Configuration.get("prefix") + "§aRandomTP enabled on version §e" + getDescription().getVersion() + "§a by §e" + getDescription().getAuthors() + "§a.");
+                    sender.sendMessage("§aRandomTP enabled on version §e" + getDescription().getVersion() + "§a by §e" + getDescription().getAuthors().get(0) + "§a.");
                     return true;
                 }
             }
@@ -50,7 +55,7 @@ public class Main extends JavaPlugin {
                 if(args[0].equalsIgnoreCase("teleport")) {
                     if(sender instanceof Player) {
                         Player p = ((Player) sender);
-                        if(sender.hasPermission("RandomTP.teleport.self")) {
+                        if(sender.hasPermission("RandomTP.teleport")) {
                             Teleport.teleport(p, p.getWorld());
                             return true;
                         }
@@ -62,6 +67,58 @@ public class Main extends JavaPlugin {
                 }
 
             }
+
+            if(args.length == 2) {
+
+                if(args[0].equalsIgnoreCase("teleport")) {
+                    if(sender instanceof Player) {
+                        Player p = ((Player) sender);
+                        World wld = Bukkit.getWorld(args[1]);
+                        if(wld != null) {
+                            if(sender.hasPermission("RandomTP.teleport.worlds")) {
+                                Teleport.teleport(p, wld);
+                                return true;
+                            }
+                            sender.sendMessage((String) Configuration.get("noPermissions"));
+                            return true;
+                        }
+                        sender.sendMessage((String) Configuration.get("world_not_exists"));
+                        return true;
+                    }
+                sender.sendMessage("Command not avaible for console.");
+                return true;
+                }
+
+            }
+
+            if(args.length == 3) {
+
+                if(args[0].equalsIgnoreCase("teleport")) {
+                    if(sender instanceof Player) {
+                        Player p = ((Player) sender);
+                        World wld = Bukkit.getWorld(args[1]);
+                        Player target = Bukkit.getPlayerExact(args[2]);
+                        if(wld != null) {
+                            if(sender.hasPermission("RandomTP.teleport.other")) {
+                                if(target != null) {
+                                    Teleport.teleport(p, wld);
+                                    return true;
+                                }
+                                sender.sendMessage((String) Configuration.get("player_not_exists"));
+                                return true;
+                            }
+                            sender.sendMessage((String) Configuration.get("noPermissions"));
+                            return true;
+                        }
+                        sender.sendMessage((String) Configuration.get("world_not_exists"));
+                        return true;
+                    }
+                    sender.sendMessage("Command not avaible for console.");
+                    return true;
+                }
+
+            }
+
             sender.sendMessage((String) Configuration.get("help_message"));
             return true;
         }
