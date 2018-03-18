@@ -21,22 +21,22 @@ public class Configuration {
         }
 
         if(pl.getConfig().getString("min_x") == null) {
-            pl.getConfig().set("min_x", -500);
+            pl.getConfig().set("min_x", -1000);
             save = true;
         }
 
         if(pl.getConfig().getString("max_x") == null) {
-            pl.getConfig().set("max_x", 500);
+            pl.getConfig().set("max_x", 1000);
             save = true;
         }
 
         if(pl.getConfig().getString("min_z") == null) {
-            pl.getConfig().set("min_z", -500);
+            pl.getConfig().set("min_z", -1000);
             save = true;
         }
 
         if(pl.getConfig().getString("max_z") == null) {
-            pl.getConfig().set("max_z", 500);
+            pl.getConfig().set("max_z", 1000);
             save = true;
         }
 
@@ -102,8 +102,12 @@ public class Configuration {
         }
 
         if(pl.getConfig().getString("help_message") == null) {
-            pl.getConfig().set("help_message", "&8[&9RandomTP&8] &aHelp for RandomTP Version {version}: " +
-                    "&8[&9RandomTP&8] &e/randomtp &7 - &amain command");
+            pl.getConfig().set("help_message", "&8[&9RandomTP&8] &aHelp for RandomTP Version {version}:\n" +
+                    "&8[&9RandomTP&8] &e/randomtp &7 - &aMain command for the plugin.\n" +
+                    "&8[&9RandomTP&8] &e/rtp reload &7 - &aReloads the config.\n" +
+                    "&8[&9RandomTP&8] &e/rtp teleport &7 - &aTeleports you into your world.\n" +
+                    "&8[&9RandomTP&8] &e/rtp teleport <World> &7 - &aTeleports you into the specified world.\n" +
+                    "&8[&9RandomTP&8] &e/rtp releport <World> <Player> &7 - &aTeleports the player into the specified world.");
             save = true;
         }
 

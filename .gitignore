@@ -34,4 +34,7 @@ RandomTP.iml
 .idea/vcs.xml
 .idea/artifacts/RandomTP.xml
 out/production/RandomTP/plugin.yml
-out/production/RandomTP/plugin.yml
+out/production/RandomTP/net/thomi100/Configuration.class
+out/production/RandomTP/net/thomi100/Main.class
+out/production/RandomTP/net/thomi100/SignHandler.class
+out/production/RandomTP/net/thomi100/Teleport.class
